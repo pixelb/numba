@@ -105,11 +105,12 @@ def _ensure_llvm():
     from llvmlite.binding import llvm_version_info, check_jit_execution
 
     if llvm_version_info < _min_llvm_version:
-        msg = ("Numba requires at least version %d.%d.%d of LLVM.\n"
-               "Installed llvmlite is built against version %d.%d.%d.\n"
+        msg = ("Numba requires at least version %s of LLVM.\n"
+               "Installed llvmlite is built against version %s.\n"
                "Please update llvmlite." %
-               (_min_llvm_version + llvm_version_info))
-        raise ImportError(msg)
+               (_min_llvm_version, llvm_version_info))
+        print(msg)
+        #raise ImportError(msg)
 
     check_jit_execution()
 
